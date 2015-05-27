@@ -6,7 +6,6 @@
 package com.api.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 
 /**
@@ -14,22 +13,37 @@ import java.util.Date;
  * @author Utilisateur
  */
 public class Experiences implements Serializable{
-
-    private String  title;
-    private String  compagny;
-    private Date start; 
-    private Date end;
+    
+    
+    
+    private String id;
+    private String title;
+    private String compagny;
+    private String start; 
+    private String end;
     private String expContend;
     private Candidat candidat;
 
-    public Experiences(String title, String compagny, Date start, Date end, String expContend, Candidat candidat) {
-        
+    public Experiences(String title, String compagny, String start, String end, String expContend, Candidat candidat) {
         this.title = title;
         this.compagny = compagny;
         this.start = start;
         this.end = end;
         this.expContend = expContend;
         this.candidat = candidat;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
+
+    public Experiences() {
     }
 
     public String getTitle() {
@@ -48,19 +62,19 @@ public class Experiences implements Serializable{
         this.compagny = compagny;
     }
 
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
@@ -79,6 +93,8 @@ public class Experiences implements Serializable{
     public void setCandidat(Candidat candidat) {
         this.candidat = candidat;
     }
+
+   
 
     
     
