@@ -9,7 +9,6 @@ import com.api.dto.Experiences;
 import com.api.dto.Candidat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.elasticsearch.action.index.IndexResponse;
@@ -37,9 +36,9 @@ public class Main {
         try {
 
             Client client = new TransportClient()
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9300))
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9301))
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9302));
+                    .addTransportAddress(new InetSocketTransportAddress("192.168.1.14", 9300));
+//                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9301))
+//                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
@@ -54,10 +53,10 @@ public class Main {
             nc1.setName("nicolas");
             nc1.setId(response.getId());
 
-            Experiences experiences = new Experiences("Université de Montpellier 2 ",
+            Experiences experiences = new Experiences("UniversitÃ© de Montpellier 2 ",
                     "Stagiaire",
-                    new GregorianCalendar(2007, 3, 1).getTime(),
-                    new GregorianCalendar(2007, 8, 1).getTime(),
+                    "02/10/2001",
+                    "02/11/2013",
                     "blbla",
                     nc1);
 
