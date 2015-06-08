@@ -36,8 +36,8 @@ public class Main {
         try {
 
             Client client = new TransportClient()
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.1.14", 9300));
-//                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9301))
+                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.15", 9300))
+                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.15", 9301));
 //                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
@@ -53,7 +53,7 @@ public class Main {
             nc1.setName("nicolas");
             nc1.setId(response.getId());
 
-            Experiences experiences = new Experiences("UniversitÃ© de Montpellier 2 ",
+            Experiences experiences = new Experiences("Université de Montpellier 2 ",
                     "Stagiaire",
                     "02/10/2001",
                     "02/11/2013",
