@@ -6,6 +6,7 @@
 package com.api.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -22,15 +23,11 @@ public class Experiences implements Serializable{
     private String start; 
     private String end;
     private String expContend;
-    private Candidat candidat;
+    private String candidatid;
+     private String candidatName;
+    private List<String> tecnoList;
 
-    public Experiences(String title, String compagny, String start, String end, String expContend, Candidat candidat) {
-        this.title = title;
-        this.compagny = compagny;
-        this.start = start;
-        this.end = end;
-        this.expContend = expContend;
-        this.candidat = candidat;
+    public Experiences() {
     }
 
     public String getId() {
@@ -39,11 +36,6 @@ public class Experiences implements Serializable{
 
     public void setId(String id) {
         this.id = id;
-    }
-    
-    
-
-    public Experiences() {
     }
 
     public String getTitle() {
@@ -86,21 +78,29 @@ public class Experiences implements Serializable{
         this.expContend = expContend;
     }
 
-    public Candidat getCandidat() {
-        return candidat;
+    public String getCandidatid() {
+        return candidatid;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setCandidatid(String candidatid) {
+        this.candidatid = candidatid;
     }
 
-   
+    public List<String> getTecnoList() {
+        return tecnoList;
+    }
 
-    
-    
-    
-    
-    
+    public void setTecnoList(List<String> tecnoList) {
+        this.tecnoList = tecnoList;
+    }
+
+    public String getCandidatName() {
+        return candidatName;
+    }
+
+    public void setCandidatName(String candidatName) {
+        this.candidatName = candidatName;
+    }    
         
     
 }

@@ -9,6 +9,10 @@ import com.api.dto.Experiences;
 import com.api.dto.Candidat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.elasticsearch.action.index.IndexResponse;
@@ -36,8 +40,8 @@ public class Main {
         try {
 
             Client client = new TransportClient()
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.15", 9300))
-                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.15", 9301));
+                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9300))
+                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9301));
 //                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
@@ -52,13 +56,29 @@ public class Main {
             Candidat nc1 = new Candidat();
             nc1.setName("nicolas");
             nc1.setId(response.getId());
-
-            Experiences experiences = new Experiences("Université de Montpellier 2 ",
-                    "Stagiaire",
-                    "02/10/2001",
-                    "02/11/2013",
-                    "blbla",
-                    nc1);
+            
+            
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            
+            
+             Calendar c =   new GregorianCalendar();
+             c.set(2000, 1, 1);
+            
+            ArrayList<String> arrayList = new ArrayList<>();
+             
+            arrayList.add("Java");
+            arrayList.add("Php");
+            arrayList.add("kibana");
+            arrayList.add("JSF");
+            
+            Experiences experiences = new Experiences();
+            experiences.setTitle("rrrrr");
+            
+            experiences.setStart(format1.format(c.getTime()));
+            experiences.setEnd(format1.format(c.getTime()));
+            experiences.setCandidatid(nc1.getId());
+            experiences.setTecnoList(arrayList);
+            
 
             System.out.println("objet creee: " + response.isCreated());
 
