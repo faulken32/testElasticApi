@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,12 +31,27 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String formatDate = format.format(date);
+        
+        
+        ArrayList<String> dep = new ArrayList<String>();
+
+        dep.add("06");
+        dep.add("78");
 
         Candidat nc = new Candidat();
         nc.setName("nicolas");
         nc.setPhone("0662094137");
         nc.setCvContends("blblalbladfdf");
+        nc.setEmail("canicatti.nicolas@gmail.com");
+        nc.setMobilite(dep);
+        nc.setEnterDate(formatDate);
+        nc.setPreavis((float) 3);
+        
 
         try {
 
@@ -56,39 +72,36 @@ public class Main {
             Candidat nc1 = new Candidat();
             nc1.setName("nicolas");
             nc1.setId(response.getId());
-            
-            
+
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-            
-            
-             Calendar c =   new GregorianCalendar();
-             c.set(2000, 1, 1);
-            
+
+            Calendar c = new GregorianCalendar();
+            c.set(2000, 1, 1);
+
             ArrayList<String> arrayList = new ArrayList<>();
-             
+
             arrayList.add("Java");
             arrayList.add("Php");
             arrayList.add("kibana");
             arrayList.add("JSF");
-            
+
             Experiences experiences = new Experiences();
             experiences.setTitle("rrrrr");
-            
+
             experiences.setStart(format1.format(c.getTime()));
             experiences.setEnd(format1.format(c.getTime()));
             experiences.setCandidatid(nc1.getId());
             experiences.setTecnoList(arrayList);
-            
 
             System.out.println("objet creee: " + response.isCreated());
 
-              byte[] json2 = mapper.writeValueAsBytes(experiences);
+            byte[] json2 = mapper.writeValueAsBytes(experiences);
             IndexResponse response2 = client.prepareIndex("cvdb", "exp")
                     .setSource(json2)
                     .execute()
                     .actionGet();
-            
-              System.out.println("objet creee: " + response2.isCreated());
+
+            System.out.println("objet creee: " + response2.isCreated());
 //            Candidat candidat = new Candidat(response.getId(), nc.getName());
 //
 //

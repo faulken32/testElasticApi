@@ -7,6 +7,7 @@ package com.api.dto;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -23,21 +24,71 @@ public class Candidat  implements Serializable{
     private String phone;
     private String cvContends;
 
-    public Candidat() {
+    // en mois
+    
+    
+    private float preavis;
+    private List mobilite;
+    private String enterDate;
+    private String updateDate;
+    private String lastEmailDate;
+    private boolean profiled;
+    
+    
+    
+
+    public boolean isProfiled() {
+        return profiled;
+    }
+
+    public void setProfiled(boolean profiled) {
+        this.profiled = profiled;
     }
 
     
     
-    public Candidat(String id, String name, int age, String surname, String email, String phone, String cvContends) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.surname = surname;
-        this.email = email;
-        this.phone = phone;
-        this.cvContends = cvContends;
+    
+    public float getPreavis() {
+        return preavis;
     }
-        
+
+    public void setPreavis(float preavis) {
+        this.preavis = preavis;
+    }
+    
+       
+
+    public List getMobilite() {
+        return mobilite;
+    }
+
+    public void setMobilite(List mobilite) {
+        this.mobilite = mobilite;
+    }
+
+    public String getEnterDate() {
+        return enterDate;
+    }
+
+    public void setEnterDate(String enterDate) {
+        this.enterDate = enterDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getLastEmailDate() {
+        return lastEmailDate;
+    }
+
+    public void setLastEmailDate(String lastEmailDate) {
+        this.lastEmailDate = lastEmailDate;
+    }        
     
     public String getId() {
         return id;
