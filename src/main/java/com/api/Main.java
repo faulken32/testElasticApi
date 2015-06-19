@@ -31,13 +31,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         String formatDate = format.format(date);
-        
-        
+
         ArrayList<String> dep = new ArrayList<String>();
 
         dep.add("06");
@@ -51,58 +49,61 @@ public class Main {
         nc.setMobilite(dep);
         nc.setEnterDate(formatDate);
         nc.setPreavis((float) 3);
-        
+        nc.setProfiled(false);
+        nc.setAutoMaticProfiled(false);
 
         try {
 
             Client client = new TransportClient()
                     .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9300))
-                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9301));
-//                    .addTransportAddress(new InetSocketTransportAddress("192.168.0.17", 9302));
+                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9301))
+                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
-            // generate json
-            byte[] json = mapper.writeValueAsBytes(nc);
-            IndexResponse response = client.prepareIndex("cvdb", "candidat")
-                    .setSource(json)
-                    .execute()
-                    .actionGet();
+            for (int i = 0; i < 100000; i++) {
 
-            Candidat nc1 = new Candidat();
-            nc1.setName("nicolas");
-            nc1.setId(response.getId());
+                byte[] json = mapper.writeValueAsBytes(nc);
+                IndexResponse response = client.prepareIndex("cvdb", "candidat")
+                        .setSource(json)
+                        .execute()
+                        .actionGet();
+                System.out.println("objet creee: " + response.isCreated());
+                // generate json
+                Candidat nc1 = new Candidat();
+                nc1.setName("nicolas");
+                nc1.setId(response.getId());    
 
-            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
-            Calendar c = new GregorianCalendar();
-            c.set(2000, 1, 1);
+                Calendar c = new GregorianCalendar();
+                c.set(2000, 1, 1);
 
-            ArrayList<String> arrayList = new ArrayList<>();
+                ArrayList<String> arrayList = new ArrayList<>();
 
-            arrayList.add("Java");
-            arrayList.add("Php");
-            arrayList.add("kibana");
-            arrayList.add("JSF");
+                arrayList.add("Java");
+                arrayList.add("Php");
+                arrayList.add("kibana");
+                arrayList.add("JSF");
 
-            Experiences experiences = new Experiences();
-            experiences.setTitle("rrrrr");
+                Experiences experiences = new Experiences();
+                experiences.setTitle("rrrrr");
 
-            experiences.setStart(format1.format(c.getTime()));
-            experiences.setEnd(format1.format(c.getTime()));
-            experiences.setCandidatid(nc1.getId());
-            experiences.setTecnoList(arrayList);
+                experiences.setStart(format1.format(c.getTime()));
+                experiences.setEnd(format1.format(c.getTime()));
+                experiences.setCandidatid(nc1.getId());
+                experiences.setTecnoList(arrayList);
 
-            System.out.println("objet creee: " + response.isCreated());
+                byte[] json2 = mapper.writeValueAsBytes(experiences);
+                IndexResponse response2 = client.prepareIndex("cvdb", "exp")
+                        .setSource(json2)
+                        .execute()
+                        .actionGet();
 
-            byte[] json2 = mapper.writeValueAsBytes(experiences);
-            IndexResponse response2 = client.prepareIndex("cvdb", "exp")
-                    .setSource(json2)
-                    .execute()
-                    .actionGet();
-
-            System.out.println("objet creee: " + response2.isCreated());
+                System.out.println("objet creee: " + response2.isCreated());
 //            Candidat candidat = new Candidat(response.getId(), nc.getName());
+
+            }
 //
 //
 //            byte[] json2 = mapper.writeValueAsBytes(experiences);

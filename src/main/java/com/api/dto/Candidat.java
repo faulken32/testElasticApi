@@ -33,10 +33,18 @@ public class Candidat  implements Serializable{
     private String updateDate;
     private String lastEmailDate;
     private boolean profiled;
-    
-    
-    
+    private boolean autoMaticProfiled;
+    private float nbYearExp;
 
+    public boolean isAutoMaticProfiled() {
+        return autoMaticProfiled;
+    }
+
+    public void setAutoMaticProfiled(boolean autoMaticProfiled) {
+        this.autoMaticProfiled = autoMaticProfiled;
+    }
+           
+    
     public boolean isProfiled() {
         return profiled;
     }
@@ -44,9 +52,7 @@ public class Candidat  implements Serializable{
     public void setProfiled(boolean profiled) {
         this.profiled = profiled;
     }
-
-    
-    
+  
     
     public float getPreavis() {
         return preavis;
@@ -55,7 +61,6 @@ public class Candidat  implements Serializable{
     public void setPreavis(float preavis) {
         this.preavis = preavis;
     }
-    
        
 
     public List getMobilite() {
@@ -145,11 +150,20 @@ public class Candidat  implements Serializable{
     public void setCvContends(String cvContends) {
         this.cvContends = cvContends;
     }
+
+    public float getNbYearExp() {
+        return nbYearExp;
+    }
+
+    public void setNbYearExp(float nbYearExp) {
+        this.nbYearExp = nbYearExp;
+    }
+
     
     
     
   
-  
+    
   
     
   
