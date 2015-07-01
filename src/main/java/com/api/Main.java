@@ -44,7 +44,7 @@ public class Main {
         Candidat nc = new Candidat();
         nc.setName("nicolas");
         nc.setPhone("0662094137");
-        nc.setCvContends("blblalbladfdf");
+        nc.setCvContends("Ingénieur");
         nc.setEmail("canicatti.nicolas@gmail.com");
         nc.setMobilite(dep);
         nc.setEnterDate(formatDate);
@@ -55,13 +55,13 @@ public class Main {
         try {
 
             Client client = new TransportClient()
-                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9300))
-                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9301))
-                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9302));
+                    .addTransportAddress(new InetSocketTransportAddress("10.60.198.75", 9300));
+//                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9301))
+//                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
-            for (int i = 0; i < 100000; i++) {
+//            for (int i = 0; i < 10; i++) {
 
                 byte[] json = mapper.writeValueAsBytes(nc);
                 IndexResponse response = client.prepareIndex("cvdb", "candidat")
@@ -69,11 +69,9 @@ public class Main {
                         .execute()
                         .actionGet();
                 System.out.println("objet creee: " + response.isCreated());
+                nc.setId(response.getId());
                 // generate json
-                Candidat nc1 = new Candidat();
-                nc1.setName("nicolas");
-                nc1.setId(response.getId());    
-
+                
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
                 Calendar c = new GregorianCalendar();
@@ -91,7 +89,7 @@ public class Main {
 
                 experiences.setStart(format1.format(c.getTime()));
                 experiences.setEnd(format1.format(c.getTime()));
-                experiences.setCandidatid(nc1.getId());
+                experiences.setCandidat(nc);
                 experiences.setTecnoList(arrayList);
 
                 byte[] json2 = mapper.writeValueAsBytes(experiences);
@@ -103,7 +101,7 @@ public class Main {
                 System.out.println("objet creee: " + response2.isCreated());
 //            Candidat candidat = new Candidat(response.getId(), nc.getName());
 
-            }
+//            }
 //
 //
 //            byte[] json2 = mapper.writeValueAsBytes(experiences);

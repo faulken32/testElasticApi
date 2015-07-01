@@ -14,17 +14,14 @@ import java.util.List;
  * @author Utilisateur
  */
 public class Experiences implements Serializable{
-    
-    
-    
+          
     private String id;
     private String title;
     private String compagny;
     private String start; 
     private String end;
     private String expContend;
-    private String candidatid;
-     private String candidatName;
+    private Candidat candidat;
     private List<String> tecnoList;
 
     public Experiences() {
@@ -77,15 +74,7 @@ public class Experiences implements Serializable{
     public void setExpContend(String expContend) {
         this.expContend = expContend;
     }
-
-    public String getCandidatid() {
-        return candidatid;
-    }
-
-    public void setCandidatid(String candidatid) {
-        this.candidatid = candidatid;
-    }
-
+ 
     public List<String> getTecnoList() {
         return tecnoList;
     }
@@ -94,13 +83,12 @@ public class Experiences implements Serializable{
         this.tecnoList = tecnoList;
     }
 
-    public String getCandidatName() {
-        return candidatName;
+    public Candidat getCandidat() {
+        return candidat;
     }
 
-    public void setCandidatName(String candidatName) {
-        this.candidatName = candidatName;
-    }    
-        
+    public void setCandidat(Candidat candidat) {
+        this.candidat = candidat;
+    }
     
 }
