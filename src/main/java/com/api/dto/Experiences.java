@@ -10,6 +10,96 @@ import java.util.List;
 
 
 /**
+ * 
+ * {   
+       "properties": {
+          "candidat": {
+            "properties": {
+              "age": {
+                "type": "long"
+              },
+              "autoMaticProfiled": {
+                "type": "boolean"
+              },
+              "cvContends": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                 "index" : "not_analyzed"
+              },
+              "enterDate": {
+                "type": "date",
+                "format": "dateOptionalTime"
+              },
+              "id": {
+                "type": "string"
+              },
+              "mobilite": {
+                "type": "string",
+                 "index" : "not_analyzed"
+              },
+              "name": {
+                "type": "string",
+                 "index" : "not_analyzed"
+              },
+              "nbYearExp": {
+                "type": "double"
+              },
+              "phone": {
+                "type": "string",
+                 "index" : "not_analyzed"
+              },
+              "preavis": {
+                "type": "double"
+              },
+              "profiled": {
+                "type": "boolean"
+              },
+              "surname": {
+                "type": "string",
+                 "index" : "not_analyzed"
+              },
+              "updateDate": {
+                "type": "date",
+                "format": "dateOptionalTime"
+              }
+            }
+          },
+          "compagny": {
+            "type": "string",
+            "index" : "not_analyzed"
+          },
+          "end": {
+            "type": "date",
+            "format": "dateOptionalTime"
+          },
+          "expContend": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "index" : "not_analyzed"
+          },
+          "start": {
+            "type": "date",
+            "format": "dateOptionalTime"
+          },
+          "tecnoList": {
+            "type": "string",
+           "index" : "not_analyzed"
+          },
+          "title": {
+            "type": "string",
+            "index" : "not_analyzed"
+          }
+        }
+}
+    
+ */
+
+
+/**
  *
  * @author Utilisateur
  */
