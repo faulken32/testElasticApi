@@ -13,11 +13,15 @@ import java.io.Serializable;
  */
 public class Techonologies implements Serializable {
     
-    
+    private String _id;
     private String name;
+    private Float nbYears;
+    private PartialCandidat partialCandidat;
 
-    public Techonologies(String name) {
-        this.name = name;
+   
+
+    public Techonologies() {
+     
     }
 
     public String getName() {
@@ -27,8 +31,30 @@ public class Techonologies implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
-    
+
+    public Float getNbYears() {
+        return nbYears;
+    }
+
+    public void setNbYears(Float nbYears) {
+        this.nbYears = nbYears;
+    }
+
+    public PartialCandidat getPartialCandidat() {
+        return partialCandidat;
+    }
+
+    public void setPartialCandidat(PartialCandidat partialCandidat) {
+        this.partialCandidat = partialCandidat;
+    }
+
+    public String getId() {
+        return _id;
+    }
+
+    public void setId(String Id) {
+        this._id = Id;
+    }
+
+
 }

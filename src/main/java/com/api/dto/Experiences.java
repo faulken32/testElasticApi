@@ -11,91 +11,36 @@ import java.util.List;
 
 /**
  * 
- * {   
-       "properties": {
-          "candidat": {
-            "properties": {
-              "age": {
-                "type": "long"
-              },
-              "autoMaticProfiled": {
-                "type": "boolean"
-              },
-              "cvContends": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string",
-                 "index" : "not_analyzed"
-              },
-              "enterDate": {
-                "type": "date",
-                "format": "dateOptionalTime"
-              },
-              "id": {
-                "type": "string"
-              },
-              "mobilite": {
-                "type": "string",
-                 "index" : "not_analyzed"
-              },
-              "name": {
-                "type": "string",
-                 "index" : "not_analyzed"
-              },
-              "nbYearExp": {
-                "type": "double"
-              },
-              "phone": {
-                "type": "string",
-                 "index" : "not_analyzed"
-              },
-              "preavis": {
-                "type": "double"
-              },
-              "profiled": {
-                "type": "boolean"
-              },
-              "surname": {
-                "type": "string",
-                 "index" : "not_analyzed"
-              },
-              "updateDate": {
-                "type": "date",
-                "format": "dateOptionalTime"
-              }
-            }
-          },
-          "compagny": {
-            "type": "string",
-            "index" : "not_analyzed"
-          },
+ * 
+ * 
+ 
+  {"properties": {
           "end": {
             "type": "date",
             "format": "dateOptionalTime"
           },
-          "expContend": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string",
-            "index" : "not_analyzed"
+          "partialCandidat": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
           },
           "start": {
             "type": "date",
             "format": "dateOptionalTime"
           },
           "tecnoList": {
-            "type": "string",
-           "index" : "not_analyzed"
+            "type": "string"
           },
           "title": {
-            "type": "string",
-            "index" : "not_analyzed"
+            "type": "string"
           }
         }
-}
-    
+    }
  */
 
 
@@ -111,9 +56,15 @@ public class Experiences implements Serializable{
     private String start; 
     private String end;
     private String expContend;
-    private Candidat candidat;
+    private float duration;
+    private PartialCandidat partialCandidat;
     private List<String> tecnoList;
-
+    
+ 
+    
+    
+    
+    
     public Experiences() {
     }
 
@@ -173,12 +124,23 @@ public class Experiences implements Serializable{
         this.tecnoList = tecnoList;
     }
 
-    public Candidat getCandidat() {
-        return candidat;
+    public PartialCandidat getPartialCandidat() {
+        return partialCandidat;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setPartialCandidat(PartialCandidat partialCandidat) {
+        this.partialCandidat = partialCandidat;
     }
+
+    public float getDuration() {
+        return duration;
+    }
+
+    public void setDuration(float duration) {
+        this.duration = duration;
+    }
+
+  
+   
     
 }

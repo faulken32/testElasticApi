@@ -9,8 +9,8 @@ import com.api.dto.Candidat;
 import com.api.dto.Comments;
 import com.api.dto.Experiences;
 import com.api.dto.PartialCandidat;
+
 import com.api.dto.School;
-import com.api.mapping.CandidatMap;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -33,8 +33,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 public class Addinfo {
 
     public Addinfo() throws IOException {
-        
-        
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         String formatDate = format.format(date);
@@ -63,18 +62,7 @@ public class Addinfo {
 //                    .addTransportAddress(new InetSocketTransportAddress("172.31.4.150", 9302));
 
             ObjectMapper mapper = new ObjectMapper(); // create once, reuse
-            CandidatMap candidatMap = new CandidatMap();
 
-//            client.admin().indices().create(new CreateIndexRequest("cvdb")).actionGet();
-//            CandidatSettings candidatSettings = new CandidatSettings();
-//            client.admin().indices().prepareUpdateSettings().setSettings(candidatSettings.getSettings()).setIndices(
-//                    "cvdb").execute().actionGet();
-//            client.admin().indices()
-//                    .preparePutMapping("cvdb")
-//                    .setType("candidat")
-//                    .setSource(candidatMap.getMapping())
-//                    .execute().actionGet();
-//            for (int i = 0; i < 10; i++) {
             byte[] json = mapper.writeValueAsBytes(nc);
             IndexResponse response = client.prepareIndex("cvdb", "candidat")
                     .setSource(json)
@@ -96,31 +84,30 @@ public class Addinfo {
             arrayList.add("kibana");
             arrayList.add("JSF");
 
-            Experiences experiences = new Experiences();
-            experiences.setTitle("rrrrr");
-
-            experiences.setStart(format1.format(c.getTime()));
-            experiences.setEnd(format1.format(c.getTime()));
-            experiences.setCandidat(nc);
-            experiences.setTecnoList(arrayList);
-
             PartialCandidat partialCandidat = new PartialCandidat();
             partialCandidat.setId(response.getId());
             partialCandidat.setName(nc.getName());
-            
+
             Comments comments = new Comments();
             comments.setPartialCandidat(partialCandidat);
             comments.setCommentDate(formatDate);
             comments.setComment("blabla bla test");
-            
+
             School school = new School();
             school.setSchool("polytech");
             school.setTitle("M1");
             school.setStart("2001-01-01");
             school.setEnd("2001-09-01");
             school.setPartialCandidat(partialCandidat);
-            
-            
+
+            Experiences experiences = new Experiences();
+            experiences.setTitle("rrrrr");
+
+            experiences.setStart(format1.format(c.getTime()));
+            experiences.setEnd(format1.format(c.getTime()));
+            experiences.setPartialCandidat(partialCandidat);
+            experiences.setTecnoList(arrayList);
+
             byte[] json2 = mapper.writeValueAsBytes(experiences);
             IndexResponse response2 = client.prepareIndex("cvdb", "exp")
                     .setSource(json2)
@@ -128,8 +115,11 @@ public class Addinfo {
                     .actionGet();
 
             System.out.println("objet creee: " + response2.isCreated());
+        
+
             
-            
+           
+
             byte[] json3 = mapper.writeValueAsBytes(comments);
             IndexResponse response3 = client.prepareIndex("cvdb", "comments")
                     .setSource(json3)
@@ -137,25 +127,23 @@ public class Addinfo {
                     .actionGet();
 
             System.out.println("objet creee: " + response3.isCreated());
-            
-             byte[] json4 = mapper.writeValueAsBytes(school);
+
+            byte[] json4 = mapper.writeValueAsBytes(school);
             IndexResponse response4 = client.prepareIndex("cvdb", "school")
                     .setSource(json4)
                     .execute()
                     .actionGet();
 
             System.out.println("objet creee: " + response4.isCreated());
-            
-            
+
+         
+
+         
+
             client.close();
         } catch (JsonProcessingException exp) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, exp);
         }
     }
-    
-    
-    
-    
-    
-    
+
 }
