@@ -10,22 +10,23 @@ import java.io.IOException;
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 
-
-//{
-//    "settings" : {
-//        "index" : {
-//            "number_of_shards" : 2,
-//            "number_of_replicas" : 1,
-//            "analysis": {
-//                "analyzer" : {
-//                    "default": {
-//                        "type": "french"
-//                    }
-//                }
-//            }
-//        }    
-//    }
-//}
+/*
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 5,
+            "number_of_replicas" : 1,
+            "analysis": {
+                "analyzer" : {
+                    "default": {
+                        "type": "french"
+                    }
+                }
+            }
+        }    
+    }
+}
+*/
 /**
  *
  * @author t311372

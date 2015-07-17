@@ -34,7 +34,8 @@ import java.util.List;
             "format": "dateOptionalTime"
           },
           "tecnoList": {
-            "type": "string"
+            "type": "string",
+            "index" : "not_analyzed"
           },
           "title": {
             "type": "string"
