@@ -14,7 +14,8 @@ import java.util.List;
  * 
  * 
  
-  {"properties": {
+  {
+    "properties": {
           "end": {
             "type": "date",
             "format": "dateOptionalTime"
@@ -22,10 +23,12 @@ import java.util.List;
           "partialCandidat": {
             "properties": {
               "id": {
-                "type": "string"
+                "type": "string",
+            "index" : "not_analyzed"
               },
               "name": {
-                "type": "string"
+                "type": "string",
+            "index" : "not_analyzed"
               }
             }
           },

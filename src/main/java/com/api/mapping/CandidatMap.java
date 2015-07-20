@@ -63,8 +63,8 @@ public class CandidatMap {
             "index" : "not_analyzed"
           },
           "mobilite": {
-            "type": "string",
-            "index" : "not_analyzed"
+//            "type": "string",
+//            "index" : "not_analyzed"
           },
           "name": {
             "type": "string",
@@ -91,7 +91,11 @@ public class CandidatMap {
           "updateDate": {
             "type": "date",
             "format": "dateOptionalTime"
-          }
+          },
+          "status" : {
+            "type" : string,
+            "index" : "not_analyzed"
+           }
         }
       }
     */

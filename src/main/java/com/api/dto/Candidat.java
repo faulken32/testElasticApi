@@ -7,7 +7,6 @@ package com.api.dto;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +16,9 @@ import java.util.List;
  */
 public class Candidat  implements Serializable{
     
+    
+    
+    
     private String _id;
     private String name;
     private int age;
@@ -24,6 +26,7 @@ public class Candidat  implements Serializable{
     private String email;
     private String phone;
     private String cvContends;
+    private String status;
 
     // en mois
     
@@ -36,7 +39,7 @@ public class Candidat  implements Serializable{
     private boolean profiled;
     private boolean autoMaticProfiled;
     private float nbYearExp;
-    private ArrayList<Techonologies> expList;
+   
 
     public boolean isAutoMaticProfiled() {
         return autoMaticProfiled;
@@ -161,16 +164,18 @@ public class Candidat  implements Serializable{
         this.nbYearExp = nbYearExp;
     }
 
-    public ArrayList getExpList() {
-        return expList;
+   
+
+    public String getStatus() {
+        return status;
     }
 
-    public void setExpList(ArrayList expList) {
-        this.expList = expList;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     
-  
+    
     
   
     
