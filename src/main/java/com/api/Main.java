@@ -5,22 +5,30 @@
  */
 package com.api;
 
-import java.io.IOException;
-import org.elasticsearch.action.bulk.BulkProcessor;
-import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.common.unit.ByteSizeUnit;
-import org.elasticsearch.common.unit.ByteSizeValue;
-import org.elasticsearch.common.unit.TimeValue;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.html.simpleparser.HTMLWorker;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.Pipeline;
+import com.itextpdf.tool.xml.XMLWorker;
 
-import org.elasticsearch.search.SearchHit;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.itextpdf.tool.xml.html.Tags;
+import com.itextpdf.tool.xml.parser.XMLParser;
+import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
+import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
+import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -32,66 +40,57 @@ public class Main {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, DocumentException {
 
-      
-        
-        
-          Client client = new TransportClient()
-                    .addTransportAddress(new InetSocketTransportAddress("10.60.198.75", 9300));
-          
-          
-        SearchResponse searchResponse = client.prepareSearch("cvdb2")
-                .setQuery(matchAllQuery())
-                .setSearchType(SearchType.SCAN)
-                .setScroll(new TimeValue(60000))
-                .setSize(50).execute().actionGet();
+        Path get = Paths.get("");
+        URI u = URI.create("http://localhost:8080/site/elastic/get/AU6wAB3LiDpfl3wwFdA6");
+        InputStream openStream = u.toURL().openStream();
 
-     BulkProcessor bulkProcessor = BulkProcessor.builder(
-        client,  
-        new BulkProcessor.Listener() {
+        // write the inputStream to a FileOutputStream
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("C:\\dev\\index.html"));
 
-              @Override
-              public void beforeBulk(long executionId, BulkRequest request) {
-                  
-              }
+        int read = 0;
+        byte[] bytes = new byte[1024];
 
-              @Override
-              public void afterBulk(long executionId, BulkRequest request, BulkResponse response) {
-  
-              }
-
-              @Override
-              public void afterBulk(long executionId, BulkRequest request, Throwable failure) {
-                
-              }
-           
-        })
-        .setBulkActions(10000) 
-        .setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB)) 
-        .setFlushInterval(TimeValue.timeValueSeconds(5)) 
-        .setConcurrentRequests(1) 
-        .build();
-
-        
-        while (true) {
-            searchResponse = client.prepareSearchScroll(searchResponse.getScrollId())
-                    .setScroll((new TimeValue(60000))).execute().actionGet();
-
-            if (searchResponse.getHits().getHits().length == 0) {
-             
-                bulkProcessor.close();
-                break; //Break condition: No hits are returned
-            }
-
-            for (SearchHit hit : searchResponse.getHits()) {
-                IndexRequest request = new IndexRequest("cvdb", hit.type(), hit.id());
-                request.source(hit.sourceRef());
-                bulkProcessor.add(request);
-            }
+        while ((read = openStream.read(bytes)) != -1) {
+            fileOutputStream.write(bytes, 0, read);
         }
+//     try (InputStream in = u.toURL().openStream()) {
+//         Files.copy(in, get);
+//     }
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("pdf.pdf"));
+        document.open();
+        HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
+
+        htmlContext.setTagFactory(Tags.getHtmlTagProcessorFactory());
+
+        CSSResolver cssResolver
+                = XMLWorkerHelper.getInstance().getDefaultCssResolver(true);
+
+        Pipeline<?> pipeline
+                = new CssResolverPipeline(cssResolver,
+                        new HtmlPipeline(htmlContext,
+                                new PdfWriterPipeline(document, writer)));
+
+        XMLWorker worker = new XMLWorker(pipeline, true);
+
+        XMLParser p = new XMLParser(worker);
+
+        p.parse(new FileInputStream("C:\\dev\\index.html"));
+
+        // step 1C:\\dev\\index.html
+        // step 2
+//       
+        // step 3
+        
+        // step 4
+
+//        XMLWorkerHelper.getInstance().parseXHtml(writer, document,
+//                new FileInputStream(new File("C:\\dev\\index.html")));
+        //step 5
+        document.close();
+
+        System.out.println("PDF Created!");
     }
-
-   
-
 }
