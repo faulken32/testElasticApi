@@ -9,15 +9,10 @@ package com.api.dto;
  *
  * @author t311372
  */
-public class Clients {
-    
+public class PartialsClients {
     
     private String id;
     private String name;
-    private String email;
-    private String phone;
-    
-    
 
     public String getId() {
         return id;
@@ -33,25 +28,5 @@ public class Clients {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    
-
-   
-
+    }          
 }

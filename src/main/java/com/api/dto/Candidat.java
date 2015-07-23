@@ -7,7 +7,9 @@ package com.api.dto;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import org.elasticsearch.common.Nullable;
 
 
 /**
@@ -39,6 +41,9 @@ public class Candidat  implements Serializable{
     private boolean profiled;
     private boolean autoMaticProfiled;
     private float nbYearExp;
+    @Nullable
+    private ArrayList<String> language;
+    
    
 
     public boolean isAutoMaticProfiled() {
@@ -174,14 +179,13 @@ public class Candidat  implements Serializable{
         this.status = status;
     }
 
-    
-    
-    
-  
-    
-  
+    public ArrayList<String> getLanguage() {
+        return language;
+    }
 
-    
+    public void setLanguage(ArrayList<String> language) {
+        this.language = language;
+    }
 
     
     
