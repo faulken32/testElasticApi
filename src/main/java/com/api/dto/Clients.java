@@ -9,6 +9,25 @@ package com.api.dto;
  *
  * @author t311372
  */
+
+
+/*
+    "properties": {
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+
+*/
 public class Clients {
     
     
