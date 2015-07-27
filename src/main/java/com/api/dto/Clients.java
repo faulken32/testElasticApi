@@ -14,16 +14,19 @@ package com.api.dto;
 /*
     "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "index" : "not_analyzed"
           },
           "id": {
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "index" : "not_analyzed"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "index" : "not_analyzed"
           }
         }
 
