@@ -13,6 +13,7 @@ public class ClientOffers {
     
     
     private String id;
+    private String title;
     private String desc;
     private PartialsClients partialsClients;
 
@@ -38,6 +39,14 @@ public class ClientOffers {
 
     public void setPartialsClients(PartialsClients partialsClients) {
         this.partialsClients = partialsClients;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
     
     
