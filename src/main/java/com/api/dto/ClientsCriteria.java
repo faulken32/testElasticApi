@@ -5,24 +5,17 @@
  */
 package com.api.dto;
 
-
-import java.util.ArrayList;
-
 /**
  *
  * @author t311372
  */
-public class ClientOffers {
-    
+public class ClientsCriteria {
     
     private String id;
-    private String title;
-    private String desc;
     private int expTotal;
     private String profileName;
     private String profiType;
     private PartialsClients partialsClients;
-    private ArrayList<String> technoList;
 
     public String getId() {
         return id;
@@ -30,22 +23,6 @@ public class ClientOffers {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public int getExpTotal() {
@@ -79,14 +56,8 @@ public class ClientOffers {
     public void setPartialsClients(PartialsClients partialsClients) {
         this.partialsClients = partialsClients;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    
+    
     
     
 }
