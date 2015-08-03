@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.api.dto;
+package com.api.dto.partialFromModel;
 
 
-import java.util.ArrayList;
+import com.api.dto.*;
+
 
 /**
  *
  * @author t311372
  */
-public class ClientOffers {
+public class PartialClientOffers {
     
     
     private String id;
@@ -22,7 +23,9 @@ public class ClientOffers {
     private String profileName;
     private String profiType;
     private PartialsClients partialsClients;
-    private ArrayList<String> technoList;
+    private String expName;
+    private String expRange;
+    
 
     public String getId() {
         return id;
@@ -80,14 +83,23 @@ public class ClientOffers {
         this.partialsClients = partialsClients;
     }
 
-    public ArrayList<String> getTechnoList() {
-        return technoList;
+    public String getExpName() {
+        return expName;
     }
 
-    public void setTechnoList(ArrayList<String> technoList) {
-        this.technoList = technoList;
+    public void setExpName(String expName) {
+        this.expName = expName;
     }
 
+    public String getExpRange() {
+        return expRange;
+    }
+
+    public void setExpRange(String expRange) {
+        this.expRange = expRange;
+    }
+
+ 
     
     
 }
